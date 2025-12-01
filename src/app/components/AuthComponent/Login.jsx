@@ -4,10 +4,12 @@ import { GraduationCap, User, Lock, Eye, EyeOff } from 'lucide-react';
 import Link from 'next/link';
 import useAuth from '@/app/Hooks/useAuth';
 import { handleEmailPassLogIn } from '@/app/FirebaseAuthFn/authFn';
+import { errorToast, sucessToast } from '@/app/Utils/toastFunction';
+import { axiosPublic } from '@/app/axiosInstance/useAxiosPublice';
 
 export default function LoginPage() {
 
-    const { googleLogin } = useAuth()
+    const { userLogIn } = useAuth()
 
     const [showPassword, setShowPassword] = useState(false);
     const [formData, setFormData] = useState({
@@ -17,8 +19,13 @@ export default function LoginPage() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const result=await handleEmailPassLogIn(userLogIn,formData)
-        console.log(result)
+        const result = await handleEmailPassLogIn(userLogIn, formData)
+        if (!result) {
+            errorToast("Login failed")
+        } else {
+            sucessToast("Register Successfull")
+            await axiosPublic.post('/api/auth/login', { formData })
+        }
     };
 
     const handleChange = (e) => {

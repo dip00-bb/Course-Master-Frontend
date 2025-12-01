@@ -3,13 +3,18 @@
 import React, { useContext, useState } from 'react';
 import { Menu, X } from 'lucide-react';
 import Link from 'next/link';
-import { AuthContext } from '../Contexts/AuthContext';
+import useAuth from '../Hooks/useAuth';
+import { axiosPublic } from '../axiosInstance/useAxiosPublice';
 
 export default function Navbar() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-    const { user } = useContext(AuthContext)
+    const { user, signout } = useAuth()
 
+    const handleLogOut = async () => {
+        await signout()
+        await axiosPublic.post('/api/auth/logout')
+    }
 
     const authConditionalButton =
         <>
@@ -40,6 +45,7 @@ export default function Navbar() {
                 user && <>
 
                     <button
+                        onClick={handleLogOut}
                         className="block w-full px-4 py-2 rounded-lg font-medium text-white transition-colors cursor-pointer"
                         style={{ backgroundColor: 'var(--accent-color)' }}
                     >
@@ -85,7 +91,7 @@ export default function Navbar() {
                                     authConditionalButton
                                 }
                             </div>
-                            { user &&
+                            {user &&
                                 <div className="w-10 h-10 rounded-full flex items-center justify-center" style={{ backgroundColor: 'var(--neutral-color)' }}>
                                     <svg className="w-5 h-5 text-gray-600" fill="currentColor" viewBox="0 0 20 20">
                                         <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />

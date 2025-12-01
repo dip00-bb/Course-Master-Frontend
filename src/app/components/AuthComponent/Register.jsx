@@ -7,6 +7,7 @@ import useAuth from '@/app/Hooks/useAuth';
 import { handleEmailPassReg } from '@/app/FirebaseAuthFn/authFn';
 import { errorToast, sucessToast } from '@/app/Utils/toastFunction';
 import { axiosPublic } from '@/app/axiosInstance/useAxiosPublice';
+import Link from 'next/link';
 
 export default function RegisterPage() {
     const [showPassword, setShowPassword] = useState(false);
@@ -60,7 +61,7 @@ export default function RegisterPage() {
             errorToast("Someting Went Wrong")
             throw new Error(String(error))
         }
-        
+
         reset();
         setImagePreview(null);
     };
@@ -290,13 +291,12 @@ export default function RegisterPage() {
                     {/* Log In Link */}
                     <p className="text-center text-sm" style={{ color: '#666666' }}>
                         Already have an account?{' '}
-                        <button
-                            onClick={() => alert('Navigate to login page')}
+                        <Link href='/login'
                             className="font-semibold hover:underline"
                             style={{ color: 'var(--accent-color)' }}
                         >
                             Log In
-                        </button>
+                        </Link>
                     </p>
                 </div>
             </div>
