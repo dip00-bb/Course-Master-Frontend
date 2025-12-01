@@ -1,6 +1,4 @@
-import { User, UserCredential } from "firebase/auth";
-import { Inputs, LoginInputs } from "../Interfaces/RegisterUser";
-import axios from "axios";
+
 
 
 // register function
@@ -15,8 +13,8 @@ export const handleEmailPassReg = async (
         if (res.user) {
             const user = res.user
             try {
-                await update(dataObj.firstName);
-                setuser({ ...user, displayName: dataObj.firstName })
+                await update(dataObj.name);
+                setuser({ ...user, displayName: dataObj.name })
                 return { user: res.user, success: true }
             } catch (error) {
                 throw new Error(String(error))

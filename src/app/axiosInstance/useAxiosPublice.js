@@ -1,5 +1,5 @@
 import axios from "axios";
 
 export const axiosPublic = axios.create({
-  baseURL: 'https://course-master-backend-zeta.vercel.app/',
+  baseURL: 'http://localhost:4000/',
 });
