@@ -8,7 +8,7 @@ const CourseInfo = () => {
   } = useFormContext();
 
   return (
-    <div className="max-w-5xl mx-auto bg-(--primary-color) rounded-lg shadow-md p-6">
+    <div className="bg-(--primary-color) rounded-lg shadow-md p-6">
       <div className="">
         {/* Header */}
         <h2 className="text-xl font-semibold mb-4">Course Information</h2>

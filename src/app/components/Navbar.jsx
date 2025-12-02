@@ -73,9 +73,9 @@ export default function Navbar() {
 
                         {/* Desktop Navigation */}
                         <div className="hidden md:flex items-center gap-8">
-                            <a href="#home" className="text-gray-700 hover:text-gray-900 transition-colors">
+                            <Link href="/" className="text-gray-700 hover:text-gray-900 transition-colors">
                                 Home
-                            </a>
+                            </Link>
                             <a href="#courses" className="font-medium transition-colors" style={{ color: 'var(--accent-color)' }}>
                                 Courses
                             </a>

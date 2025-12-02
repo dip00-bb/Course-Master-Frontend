@@ -1,41 +1,45 @@
-import React from 'react';
+import { useFormContext, useFieldArray } from "react-hook-form";
 
-const CourseSyllabus = () => {
+export default function SyllabusInput() {
+  const { control, register } = useFormContext();
+
+  const { fields, append } = useFieldArray({
+    control,
+    name: "syllabus",
+  });
+
   return (
-    <div className="p-4">
-      <div className="max-w-5xl mx-auto bg-(--primary-color) rounded-lg shadow-md p-6">
-        {/* Syllabus Header */}
-        <h2 className="text-xl font-semibold mb-4 text-gray-900">Syllabus</h2>
-        
-        {/* File Upload Area */}
-        <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center">
-          <div className="mb-3">
-            <svg 
-              xmlns="http://www.w3.org/2000/svg" 
-              width="24" 
-              height="24" 
-              viewBox="0 0 24 24" 
-              fill="none" 
-              stroke="currentColor" 
-              strokeWidth="2" 
-              strokeLinecap="round" 
-              strokeLinejoin="round" 
-              className="mx-auto text-gray-500"
-            >
-              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-              <polyline points="14 2 14 8 20 8"></polyline>
-              <line x1="12" y1="18" x2="12" y2="12"></line>
-              <line x1="8" y1="18" x2="8" y2="12"></line>
-              <line x1="16" y1="18" x2="16" y2="12"></line>
-            </svg>
-          </div>
-          <p className="mb-2 text-gray-700">Drag & drop a file here or</p>
-          <button className="text-(--accent-color) hover:underline font-medium">Browse files</button>
-          <p className="mt-2 text-xs text-gray-500">PDF, DOCX, TXT up to 10MB</p>
+    <div className="flex flex-col gap-4 rounded-lg shadow-md bg-(--primary-color) p-6">
+      <h3 className="font-semibold text-lg">Course Syllabus</h3>
+
+      {fields.map((field, index) => (
+        <div
+          key={field.id}
+          className="border border-(--neutral-color) rounded-xl p-4 bg-(--primary-color) flex flex-col gap-3"
+        >
+          {/* Module Title */}
+          <input
+            {...register(`syllabus.${index}.title`)}
+            className="border border-(--neutral-color) rounded-lg p-2 bg-(--primary-color)"
+            placeholder={`Module ${index + 1} title`}
+          />
+
+          {/* Module Description */}
+          <textarea
+            {...register(`syllabus.${index}.description`)}
+            className="border border-(--neutral-color) rounded-lg p-2 bg-(--primary-color) h-24"
+            placeholder="Module description / topics..."
+          />
         </div>
-      </div>
+      ))}
+
+      <button
+        type="button"
+        onClick={() => append({ title: "", description: "" })}
+        className="px-4 py-2 rounded-lg bg-(--accent-color) text-(--primary-color) text-sm font-medium w-fit"
+      >
+        + Add Module
+      </button>
     </div>
   );
-};
-
-export default CourseSyllabus;
+}

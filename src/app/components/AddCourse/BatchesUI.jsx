@@ -8,11 +8,11 @@ export default function BatchesUI() {
   } = useFormContext();
 
   return (
-    <div className="max-w-5xl mx-auto bg-(--primary-color) rounded-lg shadow-md p-6">
+    <div className="bg-(--primary-color) rounded-lg shadow-md p-6">
       <h2 className="text-lg font-semibold mb-4">Batches</h2>
 
       {/* Batch Row */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 border border-[--neutral-color] rounded-lg p-4 bg-[--primary-color]">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 border border-(--neutral-color) rounded-lg p-4 bg-[--primary-color]">
 
         {/* Batch Name */}
         <div className="flex flex-col">
@@ -23,7 +23,7 @@ export default function BatchesUI() {
             {...register("batchName", {
               required: "Batch name is required",
             })}
-            className="w-full px-3 py-2 border border-[--neutral-color] rounded-lg bg-[--primary-color] focus:outline-none"
+            className="w-full px-3 py-2 border border-(--neutral-color) rounded-lg bg-[--primary-color] focus:outline-none"
           />
           {errors.batchName && (
             <p className="text-red-500 text-sm mt-1">
@@ -40,7 +40,7 @@ export default function BatchesUI() {
             {...register("startDate", {
               required: "Start date is required",
             })}
-            className="w-full px-3 py-2 border border-[--neutral-color] rounded-lg bg-[--primary-color] focus:outline-none"
+            className="w-full px-3 py-2 border border-(--neutral-color) rounded-lg bg-[--primary-color] focus:outline-none"
           />
           {errors.startDate && (
             <p className="text-red-500 text-sm mt-1">
@@ -57,7 +57,7 @@ export default function BatchesUI() {
             {...register("endDate", {
               required: "End date is required",
             })}
-            className="w-full px-3 py-2 border border-[--neutral-color] rounded-lg bg-[--primary-color] focus:outline-none"
+            className="w-full px-3 py-2 border border-(--neutral-color) rounded-lg bg-[--primary-color] focus:outline-none"
           />
           {errors.endDate && (
             <p className="text-red-500 text-sm mt-1">
@@ -70,7 +70,7 @@ export default function BatchesUI() {
       {/* Submit Button */}
       <button
         type="submit"
-        className="w-full mt-4 border border-[--neutral-color] rounded-lg py-3 flex items-center justify-center gap-2 text-[--accent-color] hover:bg-[--neutral-color] transition"
+        className="w-full mt-4 border border-(--neutral-color) rounded-lg py-3 flex items-center justify-center gap-2 text-[--accent-color] hover:bg-[--neutral-color] transition"
       >
         <span className="text-xl">✔</span>
         Submit Batch

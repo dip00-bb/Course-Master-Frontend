@@ -7,13 +7,21 @@ import BatchesUI from './BatchesUI';
 import { useForm, FormProvider } from "react-hook-form"
 
 const AddCourseForm = () => {
-    const onSubmit = (data) => console.log(data)
-    const methods = useForm()
+    const onSubmit = (data) => console.log(data);
+
+    const methods = useForm({
+        defaultValues: {
+            syllabus: [
+                { title: "", description: "" } // 👈 one default module
+            ],
+        },
+    });
+
     const { register, reset, formState: { errors } } = methods
     return (
         <div className='min-h-screen bg-(--neutral-color) py-10'>
             <FormProvider {...methods}>
-                <form onSubmit={methods.handleSubmit(onSubmit)} className='b'>
+                <form onSubmit={methods.handleSubmit(onSubmit)} className='flex flex-col gap-15 max-w-6xl mx-auto'>
 
                     <div>
                         <CourseInfo />
@@ -24,8 +32,8 @@ const AddCourseForm = () => {
                     <div>
                         <BatchesUI />
                     </div>
-                    <div>
-                        <button type='submit' className='bg-amber-400 py-4'>ADD COURSE</button>
+                    <div className='w-full flex justify-center'>
+                        <button type='submit' className='bg-(--accent-color) py-2.5 px-3 rounded-xl cursor-pointer text-white'>ADD COURSE</button>
                     </div>
                 </form>
             </FormProvider>
