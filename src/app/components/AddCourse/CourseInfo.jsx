@@ -8,8 +8,8 @@ const CourseInfo = () => {
   } = useFormContext();
 
   return (
-    <div className="p-4">
-      <div className="max-w-2xl mx-auto bg-[--primary-color] rounded-lg shadow-md p-6">
+    <div className="max-w-5xl mx-auto bg-(--primary-color) rounded-lg shadow-md p-6">
+      <div className="">
         {/* Header */}
         <h2 className="text-xl font-semibold mb-4">Course Information</h2>
 
@@ -20,8 +20,7 @@ const CourseInfo = () => {
             type="text"
             placeholder="e.g. Introduction to Python Programming"
             {...register("title", { required: "Course title is required" })}
-            className="w-full px-3 py-2 border border-neutral-300 rounded-md 
-                       focus:outline-none focus:ring-2 focus:ring-[--accent-color]"
+            className="w-full px-3 py-2 border border-neutral-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[--accent-color]"
           />
           {errors.title && (
             <p className="text-red-500 text-sm mt-1">{errors.title.message}</p>
@@ -37,8 +36,7 @@ const CourseInfo = () => {
               type="text"
               placeholder="e.g. Jane Doe"
               {...register("instructor", { required: "Instructor name is required" })}
-              className="w-full px-3 py-2 border border-neutral-300 rounded-md 
-                         focus:outline-none focus:ring-2 focus:ring-[--accent-color]"
+              className="w-full px-3 py-2 border border-neutral-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[--accent-color]"
             />
             {errors.instructor && (
               <p className="text-red-500 text-sm mt-1">
@@ -55,8 +53,7 @@ const CourseInfo = () => {
               placeholder="e.g. 99.99"
               step="0.01"
               {...register("price", { required: "Price is required" })}
-              className="w-full px-3 py-2 border border-neutral-300 rounded-md 
-                         focus:outline-none focus:ring-2 focus:ring-[--accent-color]"
+              className="w-full px-3 py-2 border border-neutral-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[--accent-color]"
             />
             {errors.price && (
               <p className="text-red-500 text-sm mt-1">{errors.price.message}</p>
@@ -71,8 +68,7 @@ const CourseInfo = () => {
             rows="4"
             placeholder="Provide a detailed description of the course content, objectives, and target audience."
             {...register("description", { required: "Description is required" })}
-            className="w-full px-3 py-2 border border-neutral-300 rounded-md 
-                       focus:outline-none focus:ring-2 focus:ring-[--accent-color]"
+            className="w-full px-3 py-2 border border-neutral-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[--accent-color]"
           ></textarea>
           {errors.description && (
             <p className="text-red-500 text-sm mt-1">

@@ -3,7 +3,7 @@ import React from 'react';
 const CourseSyllabus = () => {
   return (
     <div className="p-4">
-      <div className="max-w-2xl mx-auto bg-(--primary-color) rounded-lg shadow-md p-6">
+      <div className="max-w-5xl mx-auto bg-(--primary-color) rounded-lg shadow-md p-6">
         {/* Syllabus Header */}
         <h2 className="text-xl font-semibold mb-4 text-gray-900">Syllabus</h2>
         
