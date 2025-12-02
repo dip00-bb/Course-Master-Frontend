@@ -1,3 +1,4 @@
+import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 
 
@@ -6,9 +7,7 @@ export default function WithLayout({ children }) {
     <>
       <Navbar />
       {children}
-      <footer>
-        footer
-      </footer>
+      <Footer/>
     </>
   );
 }

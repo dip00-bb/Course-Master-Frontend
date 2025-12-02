@@ -52,8 +52,7 @@ export default function EducationHero() {
 
                         {/* Secondary Button */}
                         <button
-                            className="px-6 sm:px-8 py-3 sm:py-4 rounded-full font-medium text-base sm:text-lg flex items-center justify-center gap-2 transition-all hover:shadow-lg bg-(--primary-color) border-2 border-[#333] cursor-pointer
-        "
+                            className="px-6 sm:px-8 py-3 sm:py-4 rounded-full font-medium text-base sm:text-lg flex items-center justify-center gap-2 transition-all hover:shadow-lg bg-(--primary-color) border-2 border-[#333] cursor-pointer"
                         >
                             Explore Courses
                         </button>

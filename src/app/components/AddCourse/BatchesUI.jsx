@@ -66,15 +66,6 @@ export default function BatchesUI() {
           )}
         </div>
       </div>
-
-      {/* Submit Button */}
-      <button
-        type="submit"
-        className="w-full mt-4 border border-(--neutral-color) rounded-lg py-3 flex items-center justify-center gap-2 text-[--accent-color] hover:bg-[--neutral-color] transition"
-      >
-        <span className="text-xl">✔</span>
-        Submit Batch
-      </button>
     </div>
   );
 }
