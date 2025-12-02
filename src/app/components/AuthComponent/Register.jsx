@@ -55,7 +55,7 @@ export default function RegisterPage() {
                 const users= result?.user
                 console.log (users)
                 sucessToast("Register Successfull")
-                await axiosPublic.post('/api/auth/register',{data})
+                await axiosPublic.post('/api/auth/register',data)
             }
         } catch (error) {
             errorToast("Someting Went Wrong")

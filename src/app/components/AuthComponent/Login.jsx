@@ -24,7 +24,7 @@ export default function LoginPage() {
             errorToast("Login failed")
         } else {
             sucessToast("Register Successfull")
-            await axiosPublic.post('/api/auth/login', { formData })
+            await axiosPublic.post('/api/auth/login', formData)
         }
     };
 
