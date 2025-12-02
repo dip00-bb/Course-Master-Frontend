@@ -19,25 +19,48 @@ const AddCourseForm = () => {
 
     const { register, reset, formState: { errors } } = methods
     return (
-        <div className='min-h-screen bg-(--neutral-color) py-10'>
+        <div className="min-h-screen py-10 bg-(--neutral-color)">
             <FormProvider {...methods}>
-                <form onSubmit={methods.handleSubmit(onSubmit)} className='flex flex-col gap-15 max-w-6xl mx-auto'>
+                <form
+                    onSubmit={methods.handleSubmit(onSubmit)}
+                    className="space-y-10"
+                >
+                    {/* Page Title */}
+                    <h1 className="text-2xl md:text-5xl font-semibold text-center">
+                        Create New Course
+                    </h1>
 
-                    <div>
+                    {/* Course Info */}
+                    <section className="bg-(--primary-color) rounded-2xl shadow-sm p-8 border border-(--neutral-color)">
+                        <h2 className="text-lg font-semibold mb-6">Course Information</h2>
                         <CourseInfo />
-                    </div>
-                    <div>
+                    </section>
+
+                    {/* Course Syllabus */}
+                    <section className="bg-(--primary-color) rounded-2xl shadow-sm p-8 border border-(--neutral-color)">
+                        <h2 className="text-lg font-semibold mb-6">Course Syllabus</h2>
                         <CourseSyllabus />
-                    </div>
-                    <div>
+                    </section>
+
+                    {/* Batches */}
+                    <section className="bg-(--primary-color) rounded-2xl shadow-sm p-8 border border-(--neutral-color)">
+                        <h2 className="text-lg font-semibold mb-6">Course Batches</h2>
                         <BatchesUI />
-                    </div>
-                    <div className='w-full flex justify-center'>
-                        <button type='submit' className='bg-(--accent-color) py-2.5 px-3 rounded-xl cursor-pointer text-white'>ADD COURSE</button>
+                    </section>
+
+                    {/* Submit Button */}
+                    <div className="flex justify-center">
+                        <button
+                            type="submit"
+                            className="px-6 py-3 rounded-xl bg-(--accent-color) text-(--primary-color) font-medium tracking-wide hover:opacity-90 transition"
+                        >
+                            Add Course
+                        </button>
                     </div>
                 </form>
             </FormProvider>
         </div>
+
     );
 };
 
