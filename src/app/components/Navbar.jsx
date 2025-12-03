@@ -15,45 +15,39 @@ export default function Navbar() {
         await signout()
         await axiosPublic.post('/api/auth/logout')
     }
-
-    const authConditionalButton =
+    const authConditionalButton = (
         <>
-            {!user &&
-                <>
-                    <div className="md:flex gap-2 md:pt-0 md:space-y-0 pt-3 border-t space-y-2" style={{ borderColor: 'var(--neutral-color)' }}>
-                        <Link href='/login'
-                            className="block w-full px-4 py-2 rounded-lg font-medium transition-colors"
-                            style={{
-                                backgroundColor: 'var(--neutral-color)',
-                                color: 'var(--accent-color)'
-                            }}
-                        >
-                            Log In
-                        </Link>
-
-                        <Link href='/signup'
-                            className="block w-full px-4 py-2 rounded-lg font-medium text-white transition-colors"
-                            style={{ backgroundColor: 'var(--accent-color)' }}
-                        >
-                            Sign Up
-                        </Link>
-                    </div>
-                </>
-            }
-
-            {
-                user && <>
-
-                    <button
-                        onClick={handleLogOut}
-                        className="block w-full px-4 py-2 rounded-lg font-medium text-white transition-colors cursor-pointer"
-                        style={{ backgroundColor: 'var(--accent-color)' }}
+            {!user ? (
+                <div
+                    className="md:flex md:gap-4 md:pt-0 pt-4 border-t"
+                    style={{ borderColor: "var(--neutral-color)" }}
+                >
+                    <Link
+                        href="/login"
+                        className="block w-full md:w-auto px-6 py-2 rounded-lg font-semibold text-(--accent-color) bg-(--neutral-color) transition-colors hover:bg-(--neutral-color-hover) text-center"
                     >
-                        Logout
-                    </button>
-                </>
-            }
+                        Log In
+                    </Link>
+
+                    <Link
+                        href="/signup"
+                        className="block w-full md:w-auto px-6 py-2 rounded-lg font-semibold text-white bg-(--accent-color) transition-colors hover:bg-(--accent-color-hover) text-center mt-2 md:mt-0"
+                    >
+                        Sign Up
+                    </Link>
+                </div>
+            ) : (
+                <button
+                    onClick={handleLogOut}
+                    className="w-full md:w-auto px-6 py-2 rounded-lg font-semibold text-white bg-(--accent-color) transition-colors hover:bg-(--accent-color-hover) cursor-pointer"
+                    type="button"
+                >
+                    Logout
+                </button>
+            )}
         </>
+    );
+
 
     return (
         <>
@@ -76,9 +70,9 @@ export default function Navbar() {
                             <Link href="/" className="text-gray-700 hover:text-gray-900 transition-colors">
                                 Home
                             </Link>
-                            <a href="#courses" className="font-medium transition-colors" style={{ color: 'var(--accent-color)' }}>
+                            <Link href="/courses" className="font-medium transition-colors" style={{ color: 'var(--accent-color)' }}>
                                 Courses
-                            </a>
+                            </Link>
                             <a href="#about" className="text-gray-700 hover:text-gray-900 transition-colors">
                                 About Us
                             </a>
