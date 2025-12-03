@@ -1,6 +1,7 @@
 import React from 'react';
 import Hero from '../components/Hero/Hero';
 import FeatureCards from '../components/FeatureCards';
+import PopularCourse from '../components/PopularCourse';
 
 const page = () => {
   return (
@@ -9,7 +10,12 @@ const page = () => {
         <Hero />
       </div>
       <main>
-        <FeatureCards/>
+        <div>
+          <FeatureCards />
+        </div>
+        <div>
+          <PopularCourse/>
+        </div>
       </main>
     </div>
   );

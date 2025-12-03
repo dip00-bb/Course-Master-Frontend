@@ -5,13 +5,13 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 export const fetchAsyncCourses = createAsyncThunk(
   'home-courses/fetchAsyncCourses',
   async () => {
-    const response = await axiosPublic.get('api/courses/home-course')
+    const response = await axiosPublic.get('/api/courses/home-course')
     return response.data
   }
 )
 
 const initialState = {
-  courses: {},
+  courses: [],
   loading: false,
   error: null
 
@@ -20,6 +20,9 @@ const initialState = {
 export const coursesSlice = createSlice({
   name: "home-courses",
   initialState,
+  reducers: {
+
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchAsyncCourses.pending, (state) => {
@@ -27,18 +30,18 @@ export const coursesSlice = createSlice({
       })
       .addCase(fetchAsyncCourses.fulfilled, (state, action) => {
         state.loading = false,
-          state.courses = action.payload
+        state.courses = action.payload
       })
       .addCase(fetchAsyncCourses.rejected, (state, action) => {
-          state.loading = false,
-          state.courses=[],
-          state.error=action.payload
+        state.loading = false,
+          state.courses = [],
+          state.error = action.payload
       })
   }
 })
 
-export const getCoursesForHome=(state)=>{
-  return state.courses.courses
+export const getCoursesForHome = (state) => {
+  return state.courses.courses.courses  || []
 }
 
 export default coursesSlice.reducer
