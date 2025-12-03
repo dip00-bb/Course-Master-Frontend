@@ -37,6 +37,20 @@ const CourseInfo = () => {
         )}
       </div>
 
+
+      <div className="mb-5">
+        <label className="block text-sm font-medium mb-1">Course thumbnail*</label>
+        <input
+          type="url"
+          {...register("thumbnail", { required: "Course thumbnail is required" })}
+          placeholder="e.g. https://uploads/2025/11/what-is-a-thumbnail.png"
+          className="w-full px-3 py-2 rounded-md border border-(--neutral-color) focus:outline-none focus:ring-2 focus:ring-(--accent-color)"
+        />
+        {errors.thumbnail && (
+          <p className="text-(--accent-color) text-sm mt-1">{errors.thumbnail.message}</p>
+        )}
+      </div>
+
       {/* Instructor + Price */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-5">
         {/* Instructor */}
@@ -91,7 +105,7 @@ const CourseInfo = () => {
       </div>
 
       {/* Tags (PrimeReact MultiSelect) */}
-      <div className="mb-5">
+      <div className="mb-5 w-full px-3 py-2 rounded-md border border-(--neutral-color) bg-(--primary-color) focus:outline-none focus:ring-2 focus:ring-(--accent-color)">
         <label className="block text-sm font-medium mb-1">Tags*</label>
 
         <Controller

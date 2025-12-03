@@ -5,14 +5,45 @@ import CourseInfo from './CourseInfo';
 import CourseSyllabus from './CourseSyllabus';
 import BatchesUI from './BatchesUI';
 import { useForm, FormProvider } from "react-hook-form"
+import { axiosPublic } from '@/app/axiosInstance/useAxiosPublice';
+import { errorToast, sucessToast } from '@/app/Utils/toastFunction';
+
 
 const AddCourseForm = () => {
-    const onSubmit = (data) => console.log(data);
+    const onSubmit = async (formData) => {
+        const schemaData = {
+            title: formData.title,
+            instructorName: formData.instructor,
+            syllabus: formData.syllabus,
+            price: formData.price,
+            category: formData.price,
+            tags: formData.tags,
+            thumbnail:formData.thumbnail,
+            batches: [
+                {
+                    name: formData.batchName,
+                    startDate: formData.startDate,
+                    endDate: formData.endDate
+                }
+            ]
+        }
+        const data=schemaData
+        try {
+            const result = await axiosPublic.post('/api/admin/create-course',data);
+            if (result.data.success) {
+                sucessToast(result.data.message)
+            } else {
+                errorToast(result.data.message)
+            }
+        } catch (error) {
+            errorToast("Something Went Wrong")
+        }
+    };
 
     const methods = useForm({
         defaultValues: {
             syllabus: [
-                { title: "", description: "" } // 👈 one default module
+                { title: "", description: "" } 
             ],
         },
     });
