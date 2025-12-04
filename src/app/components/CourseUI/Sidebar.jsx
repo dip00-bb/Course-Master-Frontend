@@ -23,7 +23,6 @@ export default function Sidebar() {
 
 
     const onSubmit = (data) => {
-        console.log(data)
         dispatch(fetchAsyncCoursesByQuery(data));
     };
 
@@ -44,10 +43,10 @@ export default function Sidebar() {
 
 
             <aside
-                className={`fixed sm:static inset-y-0 left-0 z-50
-          w-72 bg-white shadow-md border-r border-gray-200
+                className={`sticky sm:static inset-y-0 left-0 z-50
+          w-72 bg-white shadow-[px_0px_10px_0px_rgba(0,0,0,0.3)] border-r border-gray-200
           p-6 space-y-6 transition-transform duration-300
-          ${open ? "translate-x-0" : "-translate-x-full sm:translate-x-0"}`}
+          ${open ? "translate-x-0" : "-translate-x-full sm:translate-x-0"} h-screen`}
             >
 
                 <div className="flex items-center justify-between">
@@ -121,14 +120,14 @@ export default function Sidebar() {
                     <div className="flex justify-between gap-4 mt-4">
                         <button
                             type="submit"
-                            className="px-4 py-2 rounded bg-blue-600 text-white font-semibold hover:bg-blue-700 transition"
+                            className="px-4 py-2 rounded bg-(--accent-color) text-white font-semibold hover:bg-(--accent-color) transition cursor-pointer"
                         >
                             Apply
                         </button>
                         <button
                             type="button"
                             onClick={onReset}
-                            className="px-4 py-2 rounded bg-gray-200 text-gray-700 font-semibold hover:bg-gray-300 transition"
+                            className="px-4 py-2 rounded bg-gray-200 text-gray-700 font-semibold hover:bg-gray-300 transition cursor-pointer"
                         >
                             Reset
                         </button>

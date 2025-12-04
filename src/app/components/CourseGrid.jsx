@@ -1,9 +1,10 @@
 import Image from "next/image";
+import Link from "next/link";
 
-export default function CoursesGrid({ courses }) {
+export default function CoursesGrid({ courses,gridCol=4 }) {
   return (
-    <div className="w-full bg-(--primary-color) p-4">
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+    <div className="w-full p-4 rounded-2xl">
+      <div className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-${gridCol} gap-4`}>
         {courses?.map((course) => (
           <div
             key={course._id}
@@ -23,13 +24,13 @@ export default function CoursesGrid({ courses }) {
             <h2 className="text-lg font-semibold mt-3">{course.title}</h2>
 
             {/* Instructor */}
-            <p className="text-sm mt-1">👨‍🏫 {course.instructorName}</p>
+            <p className="text-sm mt-1">{course.instructorName}</p>
 
             {/* Category */}
-            <p className="text-sm mt-1">📚 Category: {course.category}</p>
+            <p className="text-sm mt-1">Category: {course.category}</p>
 
             {/* Price */}
-            <p className="font-semibold mt-2">💰 ${course.price}</p>
+            <p className="font-semibold mt-2">${course.price}</p>
 
             {/* Tags */}
             <div className="flex flex-wrap gap-1 mt-3">
@@ -45,13 +46,13 @@ export default function CoursesGrid({ courses }) {
 
             {/* Syllabus Count */}
             <p className="text-sm mt-2">
-              📘 Syllabus: {course.syllabus?.length} modules
+              Syllabus: {course.syllabus?.length} modules
             </p>
 
             {/* Button */}
-            <button className="mt-4 w-full py-2 rounded-md bg-(--accent-color) text-(--primary-color) font-medium">
+            <Link href={`courses/${course._id}`} className="mt-4 w-full py-2 rounded-md bg-(--accent-color) text-(--primary-color) font-medium cursor-pointer block text-center">
               View Details
-            </button>
+            </Link>
           </div>
         ))}
       </div>

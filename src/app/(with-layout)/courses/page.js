@@ -13,8 +13,12 @@ const AllCourse = () => {
 
     const data = useAppSelector(getCoursesForHome)
 
+    console.log("I am data",data)
+
     return (
-        <CoursesGrid courses={data} />
+        <div>
+            <CoursesGrid courses={data} gridCol={5} />
+        </div>
     );
 };
 

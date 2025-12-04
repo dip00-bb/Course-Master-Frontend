@@ -12,7 +12,9 @@ export default function AllCourseLayout({ children }) {
             {/* Sidebar */}
 
 
-            <Sidebar />
+            <div className="sticky top-0 h-screen">
+                <Sidebar />
+            </div>
 
             <div>
                 <div>
