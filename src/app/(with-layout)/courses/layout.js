@@ -11,6 +11,7 @@ export default function AllCourseLayout({ children }) {
         <div className="flex min-h-screen bg-(--neutral-color)">
             {/* Sidebar */}
 
+
             <Sidebar />
 
             <div>

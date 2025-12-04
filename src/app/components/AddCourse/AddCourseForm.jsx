@@ -16,7 +16,7 @@ const AddCourseForm = () => {
             instructorName: formData.instructor,
             syllabus: formData.syllabus,
             price: formData.price,
-            category: formData.price,
+            category: formData.category,
             tags: formData.tags,
             thumbnail:formData.thumbnail,
             batches: [

@@ -10,6 +10,16 @@ export const fetchAsyncCourses = createAsyncThunk(
   }
 )
 
+export const fetchAsyncCoursesByQuery = createAsyncThunk(
+  'home-courses/fetchAsyncCoursesByQuery',
+  async (params) => {
+    const response = await axiosPublic.get('/api/courses/home-course', {
+      params
+    })
+    return response.data
+  }
+)
+
 const initialState = {
   courses: [],
   loading: false,
@@ -30,18 +40,22 @@ export const coursesSlice = createSlice({
       })
       .addCase(fetchAsyncCourses.fulfilled, (state, action) => {
         state.loading = false,
-        state.courses = action.payload
+          state.courses = action.payload
       })
       .addCase(fetchAsyncCourses.rejected, (state, action) => {
         state.loading = false,
           state.courses = [],
           state.error = action.payload
       })
+      .addCase(fetchAsyncCoursesByQuery.fulfilled, (state, action) => {
+        state.loading = false,
+          state.courses = action.payload
+      })
   }
 })
 
 export const getCoursesForHome = (state) => {
-  return state.courses.courses.courses  || []
+  return state.courses.courses.courses || []
 }
 
 export default coursesSlice.reducer

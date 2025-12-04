@@ -1,11 +1,21 @@
-import React from 'react';
+"use client"
 
-const page = () => {
+import CoursesGrid from '@/app/components/CourseGrid';
+import { fetchAsyncCourses, getCoursesForHome } from '@/app/lib/features/courses/coursesSlice';
+import { useAppDispatch, useAppSelector } from '@/app/lib/hooks';
+import React, { useEffect } from 'react';
+
+const AllCourse = () => {
+    const dispatch = useAppDispatch()
+    useEffect(() => {
+        dispatch(fetchAsyncCourses())
+    }, [dispatch])
+
+    const data = useAppSelector(getCoursesForHome)
+
     return (
-        <div>
-            All Courses
-        </div>
+        <CoursesGrid courses={data} />
     );
 };
 
-export default page;
+export default AllCourse;
