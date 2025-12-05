@@ -1,17 +1,18 @@
 import Image from "next/image";
 import Link from "next/link";
 
-export default function CoursesGrid({ courses,gridCol=4 }) {
+export default function CoursesGrid({ courses,gridCol}) {
+  
   return (
     <div className="w-full p-4 rounded-2xl">
-      <div className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-${gridCol} gap-4`}>
+      <div className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4`}>
         {courses?.map((course) => (
           <div
             key={course._id}
-            className="border border-(--neutral-color) rounded-xl p-4 bg-(--primary-color) shadow-sm hover:shadow-md transition"
+            className="border border-(--neutral-color) rounded-xl p-4 shadow-sm hover:shadow-md transition"
           >
             {/* Thumbnail */}
-            <div className="relative w-full h-40 rounded-lg overflow-hidden bg-(--neutral-color)">
+            <div className="relative w-full h-40 rounded-lg overflow-hidden">
               <Image
                 src={course.thumbnail}
                 alt={course.title}

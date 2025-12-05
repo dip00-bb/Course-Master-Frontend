@@ -18,22 +18,25 @@ export default function Sidebar() {
             sort: "all",
             category: "",
             tags: [],
+            page: 1,
+            limit: 10
         }
     });
 
-
     const onSubmit = (data) => {
-        dispatch(fetchAsyncCoursesByQuery(data));
+        console.log('Form submitted:', data);
+        // Reset to page 1 when applying new filters
+        const queryData = { ...data, page: 1 };
+        dispatch(fetchAsyncCoursesByQuery(queryData));
     };
 
     const onReset = () => {
         reset();
-        dispatch(fetchAsyncCoursesByQuery({}));
+        dispatch(fetchAsyncCoursesByQuery({ page: 1, limit: 10 }));
     };
 
     return (
         <>
-
             <button
                 className="sm:hidden p-3"
                 onClick={() => setOpen(true)}
@@ -41,14 +44,12 @@ export default function Sidebar() {
                 <span className="icon-[tabler--menu-2] size-6 text-gray-700" />
             </button>
 
-
             <aside
                 className={`sticky sm:static inset-y-0 left-0 z-50
-          w-72 bg-white shadow-[px_0px_10px_0px_rgba(0,0,0,0.3)] border-r border-gray-200
+          w-72 bg-white shadow-[0px_0px_0px_0px_rgba(0,0,0,0.3)] border-r border-gray-200
           p-6 space-y-6 transition-transform duration-300
-          ${open ? "translate-x-0" : "-translate-x-full sm:translate-x-0"} h-screen`}
+          ${open ? "translate-x-0" : "-translate-x-full sm:translate-x-0"} h-screen overflow-y-auto`}
             >
-
                 <div className="flex items-center justify-between">
                     <h2 className="text-xl font-semibold text-gray-900">Filter & Sort</h2>
                     <button className="sm:hidden" onClick={() => setOpen(false)}>
@@ -56,8 +57,8 @@ export default function Sidebar() {
                     </button>
                 </div>
 
-                <form onSubmit={handleSubmit(onSubmit)}>
-
+                <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+                    {/* Search */}
                     <div className="relative">
                         <input
                             type="text"
@@ -68,21 +69,32 @@ export default function Sidebar() {
                         <span className="icon-[tabler--search] absolute left-3 top-2.5 text-gray-400 size-5" />
                     </div>
 
+                    {/* Sort */}
                     <div>
                         <label className="block font-medium text-gray-800 mb-2">Sort by</label>
                         <select
                             {...register("sort")}
                             className="w-full border border-gray-300 rounded-lg py-2 px-3 text-sm focus:ring-2 focus:ring-blue-500"
                         >
-                            <option value="all">All</option>
-                            <option value="price_asc">Lower Price</option>
-                            <option value="price_desc">Higher Price</option>
+                            <option value="all">Latest</option>
+                            <option value="price_asc">Price: Low to High</option>
+                            <option value="price_desc">Price: High to Low</option>
                         </select>
                     </div>
 
+                    {/* Category */}
                     <div>
                         <p className="font-medium text-gray-800 mb-2">Category</p>
                         <div className="space-y-2 text-sm text-gray-700">
+                            <label className="flex items-center gap-2 cursor-pointer">
+                                <input
+                                    type="radio"
+                                    value=""
+                                    {...register("category")}
+                                    className="accent-blue-600"
+                                />
+                                All Categories
+                            </label>
                             {categories.map((cat) => (
                                 <label key={cat} className="flex items-center gap-2 cursor-pointer">
                                     <input
@@ -91,19 +103,20 @@ export default function Sidebar() {
                                         {...register("category")}
                                         className="accent-blue-600"
                                     />
-                                    {cat.toUpperCase()}
+                                    {cat.charAt(0).toUpperCase() + cat.slice(1)}
                                 </label>
                             ))}
                         </div>
                     </div>
 
+                    {/* Tags */}
                     <div>
                         <p className="font-medium text-gray-800 mb-2">Tags</p>
                         <div className="flex flex-wrap gap-2">
                             {tagsList.map((tag) => (
                                 <label
                                     key={tag}
-                                    className="flex items-center gap-2 px-3 py-1 rounded-full bg-gray-100 text-gray-800 text-sm border border-gray-200 cursor-pointer select-none"
+                                    className="flex items-center gap-2 px-3 py-1 rounded-full bg-gray-100 text-gray-800 text-sm border border-gray-200 cursor-pointer select-none hover:bg-gray-200"
                                 >
                                     <input
                                         type="checkbox"
@@ -111,23 +124,24 @@ export default function Sidebar() {
                                         {...register("tags")}
                                         className="accent-blue-600"
                                     />
-                                    {tag.toUpperCase()}
+                                    {tag.charAt(0).toUpperCase() + tag.slice(1)}
                                 </label>
                             ))}
                         </div>
                     </div>
 
+                    {/* Buttons */}
                     <div className="flex justify-between gap-4 mt-4">
                         <button
                             type="submit"
-                            className="px-4 py-2 rounded bg-(--accent-color) text-white font-semibold hover:bg-(--accent-color) transition cursor-pointer"
+                            className="flex-1 px-4 py-2 rounded bg-blue-600 text-white font-semibold hover:bg-blue-700 transition cursor-pointer"
                         >
-                            Apply
+                            Apply Filters
                         </button>
                         <button
                             type="button"
                             onClick={onReset}
-                            className="px-4 py-2 rounded bg-gray-200 text-gray-700 font-semibold hover:bg-gray-300 transition cursor-pointer"
+                            className="flex-1 px-4 py-2 rounded bg-gray-200 text-gray-700 font-semibold hover:bg-gray-300 transition cursor-pointer"
                         >
                             Reset
                         </button>
@@ -135,10 +149,9 @@ export default function Sidebar() {
                 </form>
             </aside>
 
-
             {open && (
                 <div
-                    className="fixed inset-0 bg-black/40 sm:hidden"
+                    className="fixed inset-0 bg-black/40 sm:hidden z-40"
                     onClick={() => setOpen(false)}
                 />
             )}

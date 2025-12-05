@@ -1,6 +1,7 @@
 "use client"
 
 import CoursesGrid from '@/app/components/CourseGrid';
+import Pagination from '@/app/components/Pagination';
 import { fetchAsyncCourses, getCoursesForHome } from '@/app/lib/features/courses/coursesSlice';
 import { useAppDispatch, useAppSelector } from '@/app/lib/hooks';
 import React, { useEffect } from 'react';
@@ -17,7 +18,8 @@ const AllCourse = () => {
 
     return (
         <div>
-            <CoursesGrid courses={data} gridCol={5} />
+            <CoursesGrid courses={data} gridCol={'2'} />
+            <Pagination/>
         </div>
     );
 };

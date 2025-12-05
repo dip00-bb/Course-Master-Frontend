@@ -14,7 +14,7 @@ const PopularCourse = () => {
     const data = useAppSelector(getCoursesForHome)
 
     return (
-        <CoursesGrid courses={data} />
+        <CoursesGrid courses={data} gridCol={4}/>
     );
 };
 
