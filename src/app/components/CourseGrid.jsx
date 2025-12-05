@@ -50,7 +50,7 @@ export default function CoursesGrid({ courses,gridCol=4 }) {
             </p>
 
             {/* Button */}
-            <Link href={`courses/${course._id}`} className="mt-4 w-full py-2 rounded-md bg-(--accent-color) text-(--primary-color) font-medium cursor-pointer block text-center">
+            <Link href={`course-details/${course._id}`} className="mt-4 w-full py-2 rounded-md bg-(--accent-color) text-(--primary-color) font-medium cursor-pointer block text-center">
               View Details
             </Link>
           </div>

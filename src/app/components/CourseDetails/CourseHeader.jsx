@@ -1,15 +1,36 @@
 "use client";
 
+import { useAppDispatch, useAppSelector } from "@/app/lib/hooks";
 import Badge from "./ui/Badge";
 import Button from "./ui/Button";
+import { createStripePayment, getCheckOutUrl } from "@/app/lib/features/payment/paymentSlice";
+import useAuth from "@/app/Hooks/useAuth";
+import { useEffect } from "react";
 
 
 
 export default function CourseHeader({ course }) {
+  const { user } = useAuth()
+  const paymentInfo = {
+    course: course.title,
+    price: course.price,
+    istructor: course.instructorName,
+    courseId: course._id,
+    customerEmail: user?.email
+  }
+  const dispatch = useAppDispatch()
+
   const handleEnroll = () => {
-    // Check if user is logged in, then redirect to payment/enroll
-    console.log("Enrolling in course:", course._id);
+    dispatch(createStripePayment(paymentInfo))
+
   };
+
+  const url = useAppSelector(getCheckOutUrl)
+  useEffect(() => {
+    if (url) {
+      window.location.href = url
+    }
+  }, [url])
 
   return (
     <div className="bg-(--primary-color) border-b border-gray-200">
@@ -46,7 +67,7 @@ export default function CourseHeader({ course }) {
 
           {/* Right: Thumbnail & Enroll */}
           <div className="lg:col-span-1">
-            <div className="bg-[var(--primary-color)] rounded-2xl shadow-xl border border-gray-200 overflow-hidden sticky top-4">
+            <div className="bg-(--primary-color) rounded-2xl shadow-xl border border-gray-200 overflow-hidden sticky top-4">
               {/* Thumbnail */}
               <div className="aspect-video w-full bg-gray-200">
                 <img
@@ -65,7 +86,7 @@ export default function CourseHeader({ course }) {
                   <span className="text-gray-500 line-through text-lg">${course.price + 100}</span>
                 </div>
 
-                <Button onClick={handleEnroll} className="w-full">
+                <Button onClick={handleEnroll} className="w-full cursor-pointer">
                   Enroll Now
                 </Button>
 
